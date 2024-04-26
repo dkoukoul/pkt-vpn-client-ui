@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PKT VPN</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div id="notification" class="notification"></div>
+    <div class="container">
+        <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+        <div class="server-list" id="vpnServers" style="display: none;">
+            {{range .Servers}}
+                <div class="server-item" selected="{{.Selected}}" onclick="selectServerAndToggleDivs(this)">
+                    <img src="/images/flags/{{.CountryCode}}.svg" alt="{{.Name}}">
+                    <input type="hidden" value="{{.PublicKey}}">
+                    <input type="hidden" value="{{.PublicIP}}">
+                    <span>{{.Name}}</span>
+                </div>
+            {{end}}
+        </div>
+        <div class="main" id="main">
+            <button id="connectButton" class="power-button" onclick="connectToVpn()" title="Toggle button for VPN connection"></button>
+            <div class="server-status">
+                <div id="ipv4">Public IPv4: 192.168.1.1</div>
+                <div id="ipv6">Public IPv6: fc00::1</div>
+            </div>
+            <div id="selectedServer" class="server-item" onclick="toggleDivs()">
+                <img src="" alt="">
+                <input type="hidden" value="">
+                <input type="hidden" value="">
+                <span>Click to select VPN</span>
+            </div>
+        </div>
+        </div class="status"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
